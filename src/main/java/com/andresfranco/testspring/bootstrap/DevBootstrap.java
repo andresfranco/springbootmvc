@@ -29,12 +29,12 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
 
     private void initData(){
        
-       User user = new User("afranco", "koloinotzente@gmail.com","password1");
-       Role role = new Role("admin","administrator");
-       user.getUserRoles().add(role);
-       role.getUsers().add(user);
-       userRepository.save(user);
-       roleRepository.save(role);
+//       User user = new User("afranco", "koloinotzente@gmail.com","password1");
+//       Role role = new Role("admin","administrator");
+//       user.getUserRoles().add(role);
+//       role.getUsers().add(user);
+//       userRepository.save(user);
+//       roleRepository.save(role);
        
        
        
