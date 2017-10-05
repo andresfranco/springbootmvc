@@ -4,6 +4,8 @@ package com.andresfranco.testspring.model;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "user")

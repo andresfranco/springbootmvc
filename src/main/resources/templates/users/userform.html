@@ -1,4 +1,5 @@
-<html xmlns="http://www.w3.org/1999/xhtml"  lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/backendlayout}">
 <head>
  
     <meta charset="UTF-8"/>
@@ -16,7 +17,9 @@
             crossorigin ="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<form  th:action="@{${actionRoute}}" th:object="${user}" method="post">
+<div class="container" layout:fragment="custom-content" style="padding-top: 60px;">   
+<h1 th:text="${title}"></h1>    
+<form  th:action="@{/user}" th:object="${userForm}" method="post">
      <input type="hidden" th:field="*{userId}"/>
     <div class="form-group">
         <label for="userName">User Name</label>
@@ -27,11 +30,10 @@
         <input type="text" th:field="*{email}" class="form-control" />
     </div>
     <div class="form-group">
-        <input type="submit" value="Guardar" class="btn btn-default"/>
+        <input type="submit" value="Save" class="btn btn-default"/> <a class="btn btn-default" th:href="@{${indexRoute}}">Cancel</a>
     </div>
     
 </form>
-
-<a th:href="@{${indexRoute}}">Back</a>
+</div>    
 </body>
 </html>
