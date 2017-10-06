@@ -1,8 +1,14 @@
 package com.andresfranco.testspring.commands;
 
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
+
+
 public class UserForm {
     private Long userId;
+    @Size(max = 20, min = 3)
     private String userName;
+    @Email
     private String email;
     private String password;
 

@@ -19,11 +19,19 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+
+                <li><span th:text="#{language.change}"></span>:
+                    <select id="locales">
+                        <option value="">Select a language</option>
+                        <option value="en" th:text="#{lang.en}"></option>
+                        <option value="es" th:text="#{lang.es}"></option>
+                    </select></li>
                 <li>
                     <a href="/signin" th:href="@{/signin}">
                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
                     </a>
                 </li>
+
                 <li>
                     <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout

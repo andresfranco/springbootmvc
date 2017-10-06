@@ -1,20 +1,21 @@
 package com.andresfranco.testspring.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import com.andresfranco.testspring.model.User;
-import org.springframework.web.bind.annotation.RequestMethod;
 import com.andresfranco.testspring.commands.UserForm;
 import com.andresfranco.testspring.converters.UserToUserForm;
 import com.andresfranco.testspring.services.UserService;
 import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
-import java.util.Map;
-import java.util.HashMap;
-
+import com.andresfranco.testspring.exceptions.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.http.HttpStatus;
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Controller
 public class UserController extends GeneralController {
 
@@ -80,7 +81,11 @@ public class UserController extends GeneralController {
     public String saveOrUpdateProduct(@Valid UserForm userForm, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            return "users/productform";
+            
+//            bindingResult.getAllErrors().forEach(objectError -> {
+//                System.out.println(objectError.toString());
+//            });
+            return "users/userform";
         }
 
         User savedUser = userService.saveOrUpdateUserForm(userForm);
@@ -94,6 +99,20 @@ public class UserController extends GeneralController {
      
         userService.delete(new Long(userId));
         return "redirect:"+this.setRoute("users", "index", "");
+    }
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public ModelAndView handleNotFound(Exception exception){
+
+        //log.error("Handling not found exception");
+        //log.error(exception.getMessage());
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.setViewName("404error");
+        modelAndView.addObject("exception", exception);
+
+        return modelAndView;
     }
     
 }
