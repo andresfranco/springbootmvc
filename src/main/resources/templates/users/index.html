@@ -3,7 +3,7 @@
       layout:decorate="~{layouts/backendlayout}">
     <body>    
         <div class="container" layout:fragment="custom-content" style="padding-top: 60px;">
-            <h1>User List</h1>
+            <h1 th:text="#{user.indexTitle}"></h1>
             <a class="btn btn-default" th:href="@{${newRoute}}">New</a>
             <table class="table">
                 <tr>

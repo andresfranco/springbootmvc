@@ -43,8 +43,8 @@ public class Config extends WebMvcConfigurationSupport {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/webjars/**")
-                .addResourceLocations("/webjars/")
+                .addResourceHandler("/webjars/**","/**")
+                .addResourceLocations("/webjars/" ,"classpath:/")
                 .setCachePeriod(3600)
                 .resourceChain(true) // !!! very important
                 ;

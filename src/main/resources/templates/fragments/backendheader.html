@@ -18,14 +18,16 @@
                     <a href="#" th:href="@{/users}">Users</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
 
-                <li><span th:text="#{language.change}"></span>:
-                    <select id="locales">
-                        <option value="">Select a language</option>
-                        <option value="en" th:text="#{lang.en}"></option>
-                        <option value="es" th:text="#{lang.es}"></option>
-                    </select></li>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+
+                    <select id="locales" class="form-control">
+                        <option value="" th:selected="__${#locale}__==''">Select a language</option>
+                        <option value="en" th:text="#{lang.en}" th:selected="__${#locale}__=='en'"></option>
+                        <option value="es" th:text="#{lang.es}" th:selected="__${#locale}__=='es'"></option>
+                    </select>
+                </li>
                 <li>
                     <a href="/signin" th:href="@{/signin}">
                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Sign in
