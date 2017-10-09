@@ -26,8 +26,8 @@
                     <input type="text"  th:field="*{userName}" class="form-control" />
                     <span class="help-block" th:if="${#fields.hasErrors('userName')}">
                         <ul>
-                            <li th:each="err : ${#fields.errors('userName')}" th:text="${err}"/>
-                        </ul>
+                            <li th:each="err : ${#fields.errors('userName')}" th:text="${err}" class="error"/>
+                        </ul>   
                     </span>
                 </div>
                 <div class="form-group">
@@ -35,7 +35,7 @@
                     <input type="text" th:field="*{email}" class="form-control" />
                     <span class="help-block" th:if="${#fields.hasErrors('email')}">
                         <ul>
-                            <li th:each="err : ${#fields.errors('email')}" th:text="${err}"/>
+                            <li th:each="err : ${#fields.errors('email')}" th:text="${err}"  class="error"/>
                         </ul>
                     </span>
                 </div>

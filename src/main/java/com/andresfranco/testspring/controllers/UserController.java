@@ -78,19 +78,21 @@ public class UserController extends GeneralController {
     }
     
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public String saveOrUpdateProduct(@Valid UserForm userForm, BindingResult bindingResult){
-
+    public String saveOrUpdateProduct(@Valid UserForm userForm, BindingResult bindingResult,Model model){
+         
         if(bindingResult.hasErrors()){
-            
-//            bindingResult.getAllErrors().forEach(objectError -> {
-//                System.out.println(objectError.toString());
-//            });
+             model.addAttribute("indexRoute", this.setRoute("users", "index", ""));
+
             return "users/userform";
         }
 
         User savedUser = userService.saveOrUpdateUserForm(userForm);
          
         return "redirect:/users/show/" + savedUser.getUserId();
+        
+//            bindingResult.getAllErrors().forEach(objectError -> {
+//                System.out.println(objectError.toString());
+//            });
     }
     
     
@@ -114,5 +116,6 @@ public class UserController extends GeneralController {
 
         return modelAndView;
     }
+    
     
 }
